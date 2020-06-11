@@ -1,3 +1,4 @@
+import 'package:didax/Page/Home.dart';
 import 'package:didax/Page/HomeConnect.dart';
 import 'package:didax/Page/Testmove.dart';
 import 'package:didax/services/firebase.dart';
@@ -26,6 +27,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
   String problemeWrite='je test ici';
   bool _checkID;
   bool goodvalide = true;
+  User finalUser=User();
 
   String lastName='';
   String firstName='';
@@ -1133,7 +1135,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
                                               child: Align(
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                    'Identifiant de connection',
+                                                    'Pseudo',
                                                     textAlign: TextAlign.center,
                                                     textScaleFactor: 1.7,
                                                     style: new TextStyle(
@@ -1329,7 +1331,8 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
                           )
                       ),
                       Container(
-                          child: problem == true ? Container(
+                          child: problem == true ?
+                          Container(
                             width: MediaQuery.of(context).size.width/1.1,
                             height: MediaQuery.of(context).size.height,
                             //color: Colors.red,
@@ -1361,7 +1364,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
                                                 child: Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
-                                                      'Information de Creation du profil',
+                                                      'Information de Creation Compte',
                                                       textAlign: TextAlign.center,
                                                       textScaleFactor: 1.7,
                                                       style: new TextStyle(
@@ -1446,7 +1449,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
                                               child: Align(
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                    'Valider votre inscription',
+                                                    'Validation',
                                                     textAlign: TextAlign.center,
                                                     textScaleFactor: 1.7,
                                                     style: new TextStyle(
@@ -1457,7 +1460,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
                                                 ),
                                               ),
                                             ):RaisedButton(
-                                              onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomeConnect()));},
+                                              onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:finalUser,userE:new UserEntrepreneur())));},
                                               color: Color.fromRGBO(135, 171, 144, 1),
                                               child: Align(
                                                 alignment: Alignment.center,
@@ -1483,68 +1486,6 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
                           ),
                         )
                       ),
-
-                      /**
-                      Container(
-                          width: MediaQuery.of(context).size.width/1.1,
-                          height: MediaQuery.of(context).size.height/8,
-                          //color: Colors.red,
-                          margin: EdgeInsets.only(top: 15.0,bottom: 15.0),
-                          child: Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            color: Color.fromRGBO(165, 183, 192, 0.5),
-                            child: Center(
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
-                                //color: Colors.red,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: MediaQuery.of(context).size.width/1.5,
-                                          height: MediaQuery.of(context).size.height/15,
-                                          //color: Colors.red,
-                                          margin: EdgeInsets.only(left:10,top: 15.0,bottom: 15.0),
-                                          child: Card(
-                                              elevation: 10,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(50.0),
-                                              ),
-                                              color: Color.fromRGBO(135, 159, 171, 0.5),
-                                              child: RaisedButton(
-                                                onPressed: (){runnerlist();},
-                                                color: Color.fromRGBO(135, 171, 144, 1),
-                                                child: Align(
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                      'Runneur',
-                                                      textAlign: TextAlign.center,
-                                                      textScaleFactor: 1.7,
-                                                      style: new TextStyle(
-                                                          color: const Color(0xffffffcc),
-                                                          fontSize: 20.0,
-                                                          fontStyle: FontStyle.normal
-                                                      )
-                                                  ),
-                                                ),
-                                              )
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                      )
-                          **/
                     ],
                   ),
                 ),
@@ -1585,7 +1526,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
       case 3:
         setState(() {
           problem = true;
-          problemeWrite='Vous devais completer toute les informations Optionnel ou laissez les champs vide';
+          problemeWrite='Vous devez compléter toutes les informations Optionnel ou laissez les champs vide.';
         });
         print('case 3');
         //tous les elements important son bon
@@ -1656,6 +1597,9 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
     usr.passWord=passWordConnection;
     usr.confirmPW=certifpassConnection;
     _firebase.addUser(usr.toMap());
+    setState(() {
+      finalUser=usr;
+    });
   }
 
   void validInscription(bool notwithActivity) async{
@@ -1679,7 +1623,7 @@ class _InscriptionPageStateC extends State<InscriptionPageCandidats> {
         if(validmail && _checkID && pass && dayB && mouB && yearB){
           setState(() {
             problem = true;
-            problemeWrite='Felicitation vous etez inscrit un code d\'identification vous a etez envoyé '+'\n'+'appuyé sur continuer pour finaliser l\'inscription';
+            problemeWrite='Bienvenu sur DIDAX';
             goodvalide=false;
           });
           validAll();
@@ -1907,6 +1851,7 @@ class _InscriptionPageEntrepreneurState extends State<InscriptionPageEntrepreneu
   String problemeWrite='';
   bool problem=false;
   bool _checkID;
+  UserEntrepreneur entrepreneur=UserEntrepreneur();
 
 
 
@@ -2677,7 +2622,7 @@ class _InscriptionPageEntrepreneurState extends State<InscriptionPageEntrepreneu
                                                 ),
                                               ),
                                             ):RaisedButton(
-                                              onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomeConnect()));},
+                                              onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:new User(),userE:entrepreneur)));},
                                               color: Color.fromRGBO(135, 171, 144, 1),
                                               child: Align(
                                                 alignment: Alignment.center,
@@ -2903,6 +2848,9 @@ class _InscriptionPageEntrepreneurState extends State<InscriptionPageEntrepreneu
     usr.siret=siret;
     usr.mail=mail;
     _firebaseSociety.addUser(usr.toMap());
+    setState(() {
+      entrepreneur=usr;
+    });
 
   }
 }
@@ -2928,6 +2876,7 @@ class _InscriptionPageStateH extends State<InscriptionPageHunter> {
   String problemeWrite='je test ici';
   bool _checkID;
   bool goodvalide = true;
+  User finalUser=User();
 
   String lastName='';
   String firstName='';
@@ -4361,7 +4310,7 @@ class _InscriptionPageStateH extends State<InscriptionPageHunter> {
                                                   ),
                                                 ),
                                               ):RaisedButton(
-                                                onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomeConnect()));},
+                                                onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:finalUser,userE:new UserEntrepreneur())));},
                                                 color: Color.fromRGBO(135, 171, 144, 1),
                                                 child: Align(
                                                   alignment: Alignment.center,
@@ -4387,68 +4336,6 @@ class _InscriptionPageStateH extends State<InscriptionPageHunter> {
                               ),
                             )
                         ),
-
-                        /**
-                            Container(
-                            width: MediaQuery.of(context).size.width/1.1,
-                            height: MediaQuery.of(context).size.height/8,
-                            //color: Colors.red,
-                            margin: EdgeInsets.only(top: 15.0,bottom: 15.0),
-                            child: Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            color: Color.fromRGBO(165, 183, 192, 0.5),
-                            child: Center(
-                            child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height,
-                            //color: Colors.red,
-                            child: Column(
-                            children: [
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                            Container(
-                            width: MediaQuery.of(context).size.width/1.5,
-                            height: MediaQuery.of(context).size.height/15,
-                            //color: Colors.red,
-                            margin: EdgeInsets.only(left:10,top: 15.0,bottom: 15.0),
-                            child: Card(
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            color: Color.fromRGBO(135, 159, 171, 0.5),
-                            child: RaisedButton(
-                            onPressed: (){runnerlist();},
-                            color: Color.fromRGBO(135, 171, 144, 1),
-                            child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                            'Runneur',
-                            textAlign: TextAlign.center,
-                            textScaleFactor: 1.7,
-                            style: new TextStyle(
-                            color: const Color(0xffffffcc),
-                            fontSize: 20.0,
-                            fontStyle: FontStyle.normal
-                            )
-                            ),
-                            ),
-                            )
-                            ),
-                            )
-                            ],
-                            ),
-                            ],
-                            ),
-                            ),
-                            ),
-                            )
-                            )
-                         **/
                       ],
                     ),
                   ),
@@ -4560,6 +4447,9 @@ class _InscriptionPageStateH extends State<InscriptionPageHunter> {
     usr.passWord=passWordConnection;
     usr.confirmPW=certifpassConnection;
     _firebase.addUser(usr.toMap());
+    setState(() {
+      finalUser=usr;
+    });
   }
 
   void validInscription(bool notwithActivity) async{

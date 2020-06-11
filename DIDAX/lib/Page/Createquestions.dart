@@ -1,5 +1,6 @@
 import 'package:didax/Page/Home.dart';
 import 'package:didax/models/Questionnaire.dart';
+import 'package:didax/models/user.dart';
 import 'package:didax/models/userEntrepreneur.dart';
 import 'package:didax/services/QuestionData.dart';
 import 'package:didax/services/firebaseSociete.dart';
@@ -8,18 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import'package:didax/services/NoticeStock.dart';
 
+
 class Createquestions extends StatefulWidget {
 
-  UserEntrepreneur value;
-  Createquestions({this.value});
+  UserEntrepreneur entrepreneur;
+  Createquestions({this.entrepreneur});
+
+
+
   @override
-  _CreatequestionsState createState() => _CreatequestionsState(value);
+  _CreatequestionsState createState() => _CreatequestionsState(this.entrepreneur);
 }
 
 class _CreatequestionsState extends State<Createquestions> {
 
-  UserEntrepreneur _value;
-  _CreatequestionsState(_value);
+  UserEntrepreneur entrepreneur;
+  _CreatequestionsState(this.entrepreneur);
 
   bool goodvalide=true;
   bool _continue=false;
@@ -51,12 +56,19 @@ class _CreatequestionsState extends State<Createquestions> {
   QuestionDataRef _questionDataRef = QuestionDataRef();
   QuestionList _questionListData = QuestionList();
 
-  UserEntrepreneur _usr =UserEntrepreneur();
+  UserEntrepreneur _usrE =UserEntrepreneur();
   bool _num=false;
   int count = 1;
 
   @override
+  void initState() {
+    takeUser();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('ici on a'+entrepreneur.nomSociete);
     bool c = ifchecked();
     if(c==true){
       _num=true;
@@ -765,7 +777,7 @@ class _CreatequestionsState extends State<Createquestions> {
                                                   onTap: (){
                                                     setState(() {
                                                       //print(berlinWallFell.toString());
-                                                      pushQuestion();//_continue=true;
+                                                      //_continue=true;
                                                       count++;
                                                     });
                                                     _controllerQ.clear();
@@ -790,14 +802,14 @@ class _CreatequestionsState extends State<Createquestions> {
                                                 ):InkWell(
                                                   onTap: (){
                                                     setState(() {
+                                                      if(_usrE.nomSociete!='@'){
+                                                        print('yes');
+                                                      }else{
+                                                        print('no');
+                                                      }
                                                       pushQuestion();
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:new User(),userE:this.entrepreneur)));
                                                     });
-                                                    _questionListData.nombreQuestion=nombreQuestion;
-                                                    _questionListData.nomCreateur=_usr.matricule;
-                                                    _questionListData.ref='@ref'+_usr.mail+timing;
-                                                    _questionListData.category=category;
-                                                    _questionDataRef.addUser(_questionListData.toMap());
-                                                    //Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
                                                   },
                                                   child: Align(
                                                     alignment: Alignment.center,
@@ -848,9 +860,11 @@ class _CreatequestionsState extends State<Createquestions> {
 
   pushQuestion()async{
 
+    await takeUser();
+
     Question questionList = Question();
     questionList.category=category;
-    questionList.ref='@ref'+_usr.mail+timing;
+    questionList.ref='@ref'+_usrE.mail+timing;
     questionList.good=good;
     questionList.bad=bad;
     questionList.bad1=bad1;
@@ -859,17 +873,29 @@ class _CreatequestionsState extends State<Createquestions> {
 
     _questionData.addUser(questionList.toMap());
 
+    _questionListData.nombreQuestion=nombreQuestion;
+    _questionListData.nomCreateur=_usrE.nomSociete;
+    _questionListData.ref='@ref'+_usrE.mail+timing;
+    _questionListData.category=category;
+    _questionDataRef.addUser(_questionListData.toMap());
 
   }
 
-  takeUser(){
+  takeUser() async {
+
+    //await checkidUser();
+    Future<List<UserEntrepreneur>> future = _society.getAllUsers();
+    await future.then((value) => handUser(value));
 
     for(int i =0;i<_UserE.length;i++){
 
-      if(_value.matricule==_UserE[i].matricule){
-        _usr = _UserE[i];
+      if(entrepreneur.matricule==_UserE[i].matricule){
+        setState(() {
+          _usrE = _UserE[i];
+        });
       }
     }
+    print(_usrE.nomSociete);
   }
 
   checkidUser()async{

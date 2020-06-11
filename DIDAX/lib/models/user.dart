@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
-  String id = 'IBM';
+  String id = '@';
   String passWord='@';
   String confirmPW='@';
   String lastName='@';

@@ -635,7 +635,7 @@ class _CreateNoticeState extends State<CreateNotice> {
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                                notice.ref,
+                                'Question de type :'+notice.category,
                                 textAlign: TextAlign.center,
                                 textScaleFactor: 1.7,
                                 style: new TextStyle(
@@ -668,7 +668,7 @@ class _CreateNoticeState extends State<CreateNotice> {
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                                notice.nomCreateur,
+                                'Fait par : '+ notice.nomCreateur,
                                 textAlign: TextAlign.center,
                                 textScaleFactor: 1.7,
                                 style: new TextStyle(
@@ -704,7 +704,7 @@ class _CreateNoticeState extends State<CreateNotice> {
   finishData(){
 
     setState(() {
-      idSender=_usr.matricule;
+      idSender=_usr.nomSociete;
       mail=_usr.mail;
     });
 

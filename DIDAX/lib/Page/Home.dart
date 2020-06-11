@@ -121,27 +121,27 @@ class _HomeState extends State<Home> {
           color: Color.fromRGBO(77, 90, 128, 1),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   children: [
 
                     Container(width: MediaQuery.of(context).size.width/4.5,
-                      height: MediaQuery.of(context).size.height/4.5,
-                      //color: Colors.blue,
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => new Createquestions(value : userE)));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
+                        height: MediaQuery.of(context).size.height/4.5,
+                        //color: Colors.blue,
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => new Createquestions(entrepreneur : userE)));
+                          },
+                          child: Card(
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            color: Color.fromRGBO(135, 159, 171, 0.1),
+                            child: Image.network('image/questionnaire.png'),
                           ),
-                          color: Color.fromRGBO(135, 159, 171, 0.1),
-                          child: Image.network('image/questionnaire.png'),
-                        ),
-                      )
+                        )
                     ),
                     Container(width: MediaQuery.of(context).size.width/4.5,
                       height: MediaQuery.of(context).size.height/4.5,
@@ -175,6 +175,59 @@ class _HomeState extends State<Home> {
 
                   ],
                 ),
+                Row(
+                  children: [
+                    Container(width: MediaQuery.of(context).size.width/4.5,
+                        height: MediaQuery.of(context).size.height/15,
+                        //color: Colors.blue,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text('Créer Test',
+                              textAlign: TextAlign.center,
+                              textScaleFactor: 1.7,
+                              style: new TextStyle(
+                                  color: const Color(0xffffffcc),
+                                  fontSize: MediaQuery.of(context).size.width/100,
+                                  fontStyle: FontStyle.normal
+                              )
+                          ),
+                        )
+                    ),
+                    Container(width: MediaQuery.of(context).size.width/4.5,
+                        height: MediaQuery.of(context).size.height/15,
+                        //color: Colors.blue,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(userE.nomSociete,
+                              textAlign: TextAlign.center,
+                              textScaleFactor: 1.7,
+                              style: new TextStyle(
+                                  color: const Color(0xffffffcc),
+                                  fontSize: MediaQuery.of(context).size.width/100,
+                                  fontStyle: FontStyle.normal
+                              )
+                          ),
+                        )
+                    ),
+                    Container(width: MediaQuery.of(context).size.width/4.5,
+                        height: MediaQuery.of(context).size.height/15,
+                        //color: Colors.blue,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text('Créer Annonce',
+                              textAlign: TextAlign.center,
+                              textScaleFactor: 1.7,
+                              style: new TextStyle(
+                                  color: const Color(0xffffffcc),
+                                  fontSize: MediaQuery.of(context).size.width/100,
+                                  fontStyle: FontStyle.normal
+                              )
+                          ),
+                        )
+                    ),
+                  ],
+
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height/1.5,
@@ -197,7 +250,6 @@ class _HomeState extends State<Home> {
                                   setState(() {
                                     _messageThis=_MylistMessage[position];
                                     readMessage=true;
-
                                   });
                                 },
                                   child:
@@ -258,7 +310,21 @@ class _HomeState extends State<Home> {
                                               borderRadius: BorderRadius.circular(20.0),
                                             ),
                                             color: Color.fromRGBO(135, 159, 171, 0.1),
-                                            child: Image.network('image/person.png'),
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                _MylistMessage[position].to,
+                                                textAlign: TextAlign.center,
+                                                textScaleFactor: 1.7,
+                                                style: new TextStyle(
+                                                    color: const Color(0xffffffcc),
+                                                    fontSize: MediaQuery
+                                                        .of(context)
+                                                        .size
+                                                        .width / 125, fontStyle: FontStyle.normal
+                                                ),
+                                              ),
+                                            )
                                           ),
                                         ),
                                         Container(
@@ -302,6 +368,7 @@ class _HomeState extends State<Home> {
                                             child: Image.network('image/person.png'),
                                           ),
                                         ),
+
                                       ],
                                     );
                                   },
@@ -313,7 +380,7 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: MediaQuery.of(context).size.width/1.9,
+                                    width: MediaQuery.of(context).size.width/2.5,
                                     height: MediaQuery.of(context).size.height/10,
                                     //color: Colors.black,
                                     child: Card(
@@ -360,11 +427,35 @@ class _HomeState extends State<Home> {
                                       color: Color.fromRGBO(135, 159, 171, 0.1),
                                       child: Stack(
                                         children: [
-                                          Image.network('image/person.png'),
+                                          Image.network('image/send.png'),
                                           InkWell(
                                             onTap: (){
                                               setState(() {
                                                 createMessage(_messageThis);
+                                              });
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width/10,
+                                    height: MediaQuery.of(context).size.height/10,
+                                    //color: Colors.purple,
+                                    child: Card(
+                                      elevation: 10,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20.0),
+                                      ),
+                                      color: Color.fromRGBO(135, 159, 171, 0.1),
+                                      child: Stack(
+                                        children: [
+                                          Image.network('image/return.png'),
+                                          InkWell(
+                                            onTap: (){
+                                              setState(() {
+                                                readMessage=false;
                                               });
                                             },
                                           )
@@ -393,25 +484,8 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
-                      Container(width: MediaQuery.of(context).size.width/4.5,
-                          height: MediaQuery.of(context).size.height/4.5,
-                          //color: Colors.blue,
-                          child: InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => new Createquestions(value : userE)));
-                            },
-                            child: Card(
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              color: Color.fromRGBO(135, 159, 171, 0.1),
-                              child: Image.network('image/questionnaire.png'),
-                            ),
-                          )
-                      ),
                       Container(width: MediaQuery.of(context).size.width/4.5,
                         height: MediaQuery.of(context).size.height/4.5,
                         //color: Colors.blue,
@@ -424,66 +498,17 @@ class _HomeState extends State<Home> {
                           child: Image.network('image/person.png'),
                         ),
                       ),
-                      Container(width: MediaQuery.of(context).size.width/4.5,
-                          height: MediaQuery.of(context).size.height/4.5,
-                          //color: Colors.blue,
-                          child: InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => new CreateNotice(value: userE)));
-                            },
-                            child: Card(
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              color: Color.fromRGBO(135, 159, 171, 0.1),
-                              child: Image.network('image/executive.png'),
-                            ),
-                          )
-                      ),
-
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(width: MediaQuery.of(context).size.width/4.5,
                           height: MediaQuery.of(context).size.height/15,
                           //color: Colors.blue,
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text('Cree un Questionnaire',
-                                textAlign: TextAlign.center,
-                                textScaleFactor: 1.7,
-                                style: new TextStyle(
-                                    color: const Color(0xffffffcc),
-                                    fontSize: MediaQuery.of(context).size.width/100,
-                                    fontStyle: FontStyle.normal
-                                )
-                            ),
-                          )
-                      ),
-                      Container(width: MediaQuery.of(context).size.width/4.5,
-                          height: MediaQuery.of(context).size.height/15,
-                          //color: Colors.blue,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(_entrepreneur.nomSociete,
-                                textAlign: TextAlign.center,
-                                textScaleFactor: 1.7,
-                                style: new TextStyle(
-                                    color: const Color(0xffffffcc),
-                                    fontSize: MediaQuery.of(context).size.width/100,
-                                    fontStyle: FontStyle.normal
-                                )
-                            ),
-                          )
-                      ),
-                      Container(width: MediaQuery.of(context).size.width/4.5,
-                          height: MediaQuery.of(context).size.height/15,
-                          //color: Colors.blue,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text('Cree une annonce',
+                            child: Text(user.lastName,
                                 textAlign: TextAlign.center,
                                 textScaleFactor: 1.7,
                                 style: new TextStyle(
@@ -519,7 +544,6 @@ class _HomeState extends State<Home> {
                                     setState(() {
                                       _messageThis=_MylistMessage[position];
                                       readMessage=true;
-
                                     });
                                   },
                                   child:
@@ -566,7 +590,8 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                     color: Color.fromRGBO(135, 159, 171, 0.1),
-                                    child: ListView.builder(itemBuilder: (context, position) {
+                                    child:
+                                    ListView.builder(itemBuilder: (context, position) {
                                       return Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -575,12 +600,26 @@ class _HomeState extends State<Home> {
                                             height: MediaQuery.of(context).size.width/10,
                                             //color: Colors.yellow,
                                             child: Card(
-                                              elevation: 10,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(20.0),
-                                              ),
-                                              color: Color.fromRGBO(135, 159, 171, 0.1),
-                                              child: Image.network('image/person.png'),
+                                                elevation: 10,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(20.0),
+                                                ),
+                                                color: Color.fromRGBO(135, 159, 171, 0.1),
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    _MylistMessage[position].to,
+                                                    textAlign: TextAlign.center,
+                                                    textScaleFactor: 1.7,
+                                                    style: new TextStyle(
+                                                        color: const Color(0xffffffcc),
+                                                        fontSize: MediaQuery
+                                                            .of(context)
+                                                            .size
+                                                            .width / 125, fontStyle: FontStyle.normal
+                                                    ),
+                                                  ),
+                                                )
                                             ),
                                           ),
                                           Container(
@@ -624,6 +663,7 @@ class _HomeState extends State<Home> {
                                               child: Image.network('image/person.png'),
                                             ),
                                           ),
+
                                         ],
                                       );
                                     },
@@ -635,7 +675,7 @@ class _HomeState extends State<Home> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      width: MediaQuery.of(context).size.width/1.9,
+                                      width: MediaQuery.of(context).size.width/2.5,
                                       height: MediaQuery.of(context).size.height/10,
                                       //color: Colors.black,
                                       child: Card(
@@ -682,11 +722,35 @@ class _HomeState extends State<Home> {
                                         color: Color.fromRGBO(135, 159, 171, 0.1),
                                         child: Stack(
                                           children: [
-                                            Image.network('image/person.png'),
+                                            Image.network('image/send.png'),
                                             InkWell(
                                               onTap: (){
                                                 setState(() {
                                                   createMessage(_messageThis);
+                                                });
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width/10,
+                                      height: MediaQuery.of(context).size.height/10,
+                                      //color: Colors.purple,
+                                      child: Card(
+                                        elevation: 10,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20.0),
+                                        ),
+                                        color: Color.fromRGBO(135, 159, 171, 0.1),
+                                        child: Stack(
+                                          children: [
+                                            Image.network('image/return.png'),
+                                            InkWell(
+                                              onTap: (){
+                                                setState(() {
+                                                  readMessage=false;
                                                 });
                                               },
                                             )
@@ -706,6 +770,21 @@ class _HomeState extends State<Home> {
               ),
             )
         ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         body: Center(
@@ -922,22 +1001,30 @@ class _HomeState extends State<Home> {
   createMessage(Message msg) async {
 
     if(connectUser==true){
-
+      Message text = Message();
+      text.message=_messagesend;
+      text.to=user.mail;
+      text.from=msg.to;
+      text.read=false;
+      text.fromForTo=text.to+'to'+text.from;
+      text.toForFrom=text.from+'for'+text.to;
+      _messagebase.addUser(text.toMap());
+      _MylistMessage.add(text);
 
     }
     else if(connectUserE==true){
 
       Message text = Message();
       text.message=_messagesend;
-      text.to=userE.nomSociete;
+      text.to=userE.mail;
       text.from=msg.to;
       text.read=false;
       text.fromForTo=text.to+'to'+text.from;
-      text.toForFrom=text.from+'For'+text.to;
+      text.toForFrom=text.from+'for'+text.to;
       _messagebase.addUser(text.toMap());
-      //_MylistMessage.add(text);
+      _MylistMessage.add(text);
 
-      await myMessage();
+      //await myMessage();
 
     }
   }
@@ -984,7 +1071,7 @@ class _HomeState extends State<Home> {
     if(connectUser==true){
       for(int i = 0;i<_listMessage.length;i++){
         print('je test les messages candidat');
-        if(_listMessage[i].to==user.id || _listMessage[i].from == user.id){
+        if(_listMessage[i].to ==user.mail || _listMessage[i].from == user.mail ){
           setState(() {
             print('j\'ai ajouter : '+_listMessage[i].message);
             _MylistMessage.add(_listMessage[i]);
@@ -994,7 +1081,7 @@ class _HomeState extends State<Home> {
     }else if(connectUserE==true){
       for(int i = 0;i<_listMessage.length;i++){
         print('je test les messages entrepreneur');
-        if(_listMessage[i].to == userE.matricule || _listMessage[i].from == userE.matricule){
+        if(_listMessage[i].to == userE.mail || _listMessage[i].from == userE.mail){
           setState(() {
             print('j\'ai ajouter : '+_listMessage[i].message);
             _MylistMessage.add(_listMessage[i]);

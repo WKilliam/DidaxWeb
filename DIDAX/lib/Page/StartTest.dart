@@ -1,6 +1,10 @@
 import 'package:didax/Page/Home.dart';
+import 'package:didax/models/Message.dart';
+import 'package:didax/models/Notice.dart';
 import 'package:didax/models/Questionnaire.dart';
 import 'package:didax/models/user.dart';
+import 'package:didax/models/userEntrepreneur.dart';
+import 'package:didax/services/MessageBase.dart';
 import 'package:didax/services/QuestionData.dart';
 import 'package:didax/services/firebase.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,22 +15,25 @@ class StartTest extends StatefulWidget {
 
   QuestionList refData;
   User userTested;
-  StartTest({this.refData,this.userTested});
+  Notice notice;
+  StartTest({this.refData,this.userTested,this.notice});
   @override
-  _StartTestState createState() => _StartTestState(this.refData,userTested);
+  _StartTestState createState() => _StartTestState(this.refData,this.userTested,this.notice);
 }
 
 class _StartTestState extends State<StartTest> {
 
+  Notice notice;
   QuestionList refData;
   User userTested;
-  _StartTestState(this.refData,this.userTested);
+  _StartTestState(this.refData,this.userTested,this.notice);
 
   bool getStart = false;
-  String _message='@';
+  String _message='Vous étés sur le point de commencer le test pour cette annonce une fois terminé votre résultat sera envoyé à l\'employeur ';
 
   Firebase _firebase =Firebase();
   List<User> _listUser = List();
+  Messagebase _messagebase = Messagebase();
 
   QuestionData _questionData = QuestionData();
 
@@ -175,7 +182,7 @@ class _StartTestState extends State<StartTest> {
                                                 },
                                                   child:Align(
                                                       alignment: Alignment.center,
-                                                      child: Text('Mauvaise Réponse :',
+                                                      child: Text('Bonne Chance',
                                                           textAlign: TextAlign.center,
                                                           textScaleFactor: 1.7,
                                                           style: new TextStyle(color: const Color(0xffffffcc),
@@ -521,8 +528,19 @@ class _StartTestState extends State<StartTest> {
                                               child: InkWell(
                                                 onTap: (){
                                                   setState(() {
-                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user: userTested,userE: null,)));
+                                                    Message newMsg = Message();
+                                                    newMsg.to=userTested.mail;
+                                                    newMsg.from=notice.mail;
+                                                    newMsg.toForFrom=newMsg.to+'to'+newMsg.from;
+                                                    newMsg.toForFrom=newMsg.from+'for'+newMsg.to;
+                                                    newMsg.read=false;
+                                                    newMsg.message='Bonjour je vous présente mes resultats pour le test suivant :'+notice.title+'\n'+
+                                                        'Bonne réponse : '+(_goodResult.toString())+' Mauvaise réponse : '+(_badResult.toString());
+                                                    _messagebase.addUser(newMsg.toMap());
                                                   });
+
+
+                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user: userTested,userE: new UserEntrepreneur())));
                                                 },
                                                 child:Align(
                                                     alignment: Alignment.center,

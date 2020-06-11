@@ -1,5 +1,9 @@
+import 'package:didax/Page/Home.dart';
+import 'package:didax/models/userEntrepreneur.dart';
 import 'package:didax/services/firebase.dart';
 import 'package:didax/models/user.dart';
+import 'package:didax/services/firebaseSociete.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +18,15 @@ class HomeConnect extends StatefulWidget {
 class _HomeConnectState extends State<HomeConnect> {
 
   Firebase _firebase = Firebase();
+  FirebaseSociety _society =FirebaseSociety();
   List<User> _users;
-  List<User> _usersEntrepreneur;
+  List<UserEntrepreneur> _usersEntrepreneur;
 
   String identifiant;
   String password;
 
   User _myUser = User();
+  UserEntrepreneur _entrepreneur =UserEntrepreneur();
 
 
   @override
@@ -317,14 +323,31 @@ class _HomeConnectState extends State<HomeConnect> {
     Future<List<User>> future = _firebase.getAllUsers();
     await future.then((value) => handValuelist(value));
 
-    User user = User();
-
     for(int i=0;i<_users.length;i++){
       if(_users[i].id==id){
-        user=_users[i];
+        setState(() {
+          _myUser=_users[i];
+        });
       }
     }
-    return user;
+    return _myUser;
+  }
+
+  Future<UserEntrepreneur> checkidUserE(String id)async{
+
+    Future<List<UserEntrepreneur>> future2 = _society.getAllUsers();
+    await future2.then((value) => handValuelistSociety(value));
+
+    User user = User();
+
+    for(int i=0;i<_usersEntrepreneur.length;i++){
+      if(_usersEntrepreneur[i].matricule==id){
+        setState(() {
+          _entrepreneur=_usersEntrepreneur[i];
+        });
+      }
+    }
+    return _entrepreneur;
   }
 
 
@@ -336,8 +359,12 @@ class _HomeConnectState extends State<HomeConnect> {
     if(_myUser.passWord != password){
       print('mauvais mot de passe');
     }else{
-      print('connecter');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(user:_myUser,userE:new UserEntrepreneur())));
     }
+  }
+
+  handValuelistSociety(List<UserEntrepreneur> value) {
+    _usersEntrepreneur=value;
   }
 
 

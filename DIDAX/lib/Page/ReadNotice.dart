@@ -171,7 +171,7 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                           textScaleFactor: 1.7,
                                                           style: new TextStyle(
                                                               color: const Color(0xffffffcc),
-                                                              fontSize: 20.0,
+                                                              fontSize: MediaQuery.of(context).size.height/80,
                                                               fontStyle: FontStyle.normal
                                                           )
                                                       ),
@@ -285,7 +285,7 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                           textScaleFactor: 1.7,
                                                           style: new TextStyle(
                                                               color: const Color(0xffffffcc),
-                                                              fontSize: 20.0,
+                                                              fontSize: MediaQuery.of(context).size.height/100,
                                                               fontStyle: FontStyle.normal
                                                           )
                                                       ),
@@ -340,9 +340,9 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                   q.category=value.category;
                                                   q.nomCreateur=value.nomCreateurQuestion;
                                                   q.nombreQuestion=value.nombreQuestion;
-
-                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => StartTest(refData: q ,userTested:theUser)));
-                                                });},
+                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => StartTest(refData: q ,userTested:theUser,notice:value)));
+                                                });
+                                                },
                                                 color: Color.fromRGBO(135, 171, 144, 1),
                                                 child: Align(
                                                   alignment: Alignment.center,
@@ -470,7 +470,7 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                           textScaleFactor: 1.7,
                                                           style: new TextStyle(
                                                               color: const Color(0xffffffcc),
-                                                              fontSize: 20.0,
+                                                              fontSize: MediaQuery.of(context).size.height/80,
                                                               fontStyle: FontStyle.normal
                                                           )
                                                       ),
@@ -527,7 +527,7 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                           textScaleFactor: 1.7,
                                                           style: new TextStyle(
                                                               color: const Color(0xffffffcc),
-                                                              fontSize: 20.0,
+                                                              fontSize: MediaQuery.of(context).size.height/50,
                                                               fontStyle: FontStyle.normal
                                                           )
                                                       ),
@@ -558,7 +558,7 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                             textScaleFactor: 1.7,
                                                             style: new TextStyle(
                                                                 color: const Color(0xffffffcc),
-                                                                fontSize: 20.0,
+                                                                fontSize:  MediaQuery.of(context).size.height/50,
                                                                 fontStyle: FontStyle.normal
                                                             )
                                                         ),
@@ -584,7 +584,7 @@ class _ReadNoticeState extends State<ReadNotice> {
                                                           textScaleFactor: 1.7,
                                                           style: new TextStyle(
                                                               color: const Color(0xffffffcc),
-                                                              fontSize: 20.0,
+                                                              fontSize: MediaQuery.of(context).size.height/100,
                                                               fontStyle: FontStyle.normal
                                                           )
                                                       ),

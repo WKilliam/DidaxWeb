@@ -1,0 +1,682 @@
+@startuml
+set namespaceSeparator ::
+
+class "didax::Page::ReadNotice.dart::ReadNotice" {
+  +Notice value
+  +User theUser
+  +_ReadNoticeState createState()
+}
+
+"didax::Page::ReadNotice.dart::ReadNotice" o-- "didax::models::Notice.dart::Notice"
+"didax::Page::ReadNotice.dart::ReadNotice" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::ReadNotice.dart::ReadNotice"
+
+class "didax::Page::ReadNotice.dart::_ReadNoticeState" {
+  +bool goodvalide
+  +Notice value
+  +User theUser
+  +bool whoread
+  +void initState()
+  +Widget build()
+}
+
+"didax::Page::ReadNotice.dart::_ReadNoticeState" o-- "didax::models::Notice.dart::Notice"
+"didax::Page::ReadNotice.dart::_ReadNoticeState" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::ReadNotice.dart::_ReadNoticeState"
+
+class "didax::Page::Home.dart::Home" {
+  +User user
+  +UserEntrepreneur userE
+  +_HomeState createState()
+}
+
+"didax::Page::Home.dart::Home" o-- "didax::models::user.dart::User"
+"didax::Page::Home.dart::Home" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::Home.dart::Home"
+
+class "didax::Page::Home.dart::_HomeState" {
+  +User user
+  +UserEntrepreneur userE
+  +bool myProfilC
+  +bool myProfilE
+  +bool problem
+  -List<Notice> _notice
+  -NoticeStock _noticeStock
+  -Messagebase _messagebase
+  -List<Message> _listMessage
+  -List<Message> _MylistMessage
+  -int _contelist
+  +String myMessageText
+  -bool _change
+  +String title
+  +String description
+  +String type
+  +int numberCount
+  -Notice _DataSnap
+  +bool looker
+  +bool readMessage
+  +bool connectUser
+  +bool connectUserE
+  -String _messagesend
+  -Message _messageThis
+  -Firebase _firebase
+  -FirebaseSociety _society
+  -List<User> _userList
+  -List<UserEntrepreneur> _userSocityList
+  -User _user
+  -UserEntrepreneur _entrepreneur
+  -List<String> _listTest
+  -TextEditingController _controllerG
+  +void initState()
+  +Widget build()
+  +Widget buildRow()
+  +dynamic createMessage()
+  +dynamic getMessage()
+  +dynamic whatThisProfil()
+  +dynamic handValue()
+  +dynamic handValueEntrepreneur()
+  +Future myMessage()
+  +dynamic messageread()
+  +dynamic handValuelist()
+  +dynamic stringMessage()
+}
+
+"didax::Page::Home.dart::_HomeState" o-- "didax::models::user.dart::User"
+"didax::Page::Home.dart::_HomeState" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"didax::Page::Home.dart::_HomeState" o-- "didax::services::NoticeStock.dart::NoticeStock"
+"didax::Page::Home.dart::_HomeState" o-- "didax::services::MessageBase.dart::Messagebase"
+"didax::Page::Home.dart::_HomeState" o-- "didax::models::Notice.dart::Notice"
+"didax::Page::Home.dart::_HomeState" o-- "didax::models::Message.dart::Message"
+"didax::Page::Home.dart::_HomeState" o-- "didax::services::firebase.dart::Firebase"
+"didax::Page::Home.dart::_HomeState" o-- "didax::services::firebaseSociete.dart::FirebaseSociety"
+"didax::Page::Home.dart::_HomeState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::Home.dart::_HomeState"
+
+class "didax::Page::Testmove.dart::Testmove" {
+  -User _usr
+  +_TestmoveState createState()
+}
+
+"didax::Page::Testmove.dart::Testmove" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::Testmove.dart::Testmove"
+
+class "didax::Page::Testmove.dart::_TestmoveState" {
+  -User _usr
+  +String id
+  +String passWord
+  +String confirmPW
+  +String lastName
+  +String firstName
+  +String city
+  +String mail
+  +String siretvalue
+  +String mailActivity
+  +int dayBorn
+  +int mouthBorn
+  +int yearBorn
+  +int expvalue
+  +int dayBornActivity
+  +int mouthBornActivity
+  +int yearBornActivity
+  -String _informationUser
+  +Widget build()
+  +String messageprint()
+  +User usercreate()
+}
+
+"didax::Page::Testmove.dart::_TestmoveState" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::Testmove.dart::_TestmoveState"
+
+class "didax::Page::StartTest.dart::StartTest" {
+  +QuestionList refData
+  +User userTested
+  +_StartTestState createState()
+}
+
+"didax::Page::StartTest.dart::StartTest" o-- "didax::models::Questionnaire.dart::QuestionList"
+"didax::Page::StartTest.dart::StartTest" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::StartTest.dart::StartTest"
+
+class "didax::Page::StartTest.dart::_StartTestState" {
+  +QuestionList refData
+  +User userTested
+  +bool getStart
+  -String _message
+  -Firebase _firebase
+  -List<User> _listUser
+  -QuestionData _questionData
+  -List<Question> _list
+  -List<Question> _listClean
+  -List<String> _reponse
+  +bool changeFont
+  -int _goodResult
+  -int _badResult
+  -int _num
+  -int _count
+  +void initState()
+  +Widget build()
+  +dynamic takeQuestion()
+  +dynamic handQuestion()
+  +dynamic compareQuestion()
+  +dynamic cleanReponse()
+  +dynamic shuffquestion()
+  +dynamic finalCheck()
+  +void checkGoodNotGood()
+  +dynamic handUser()
+}
+
+"didax::Page::StartTest.dart::_StartTestState" o-- "didax::models::Questionnaire.dart::QuestionList"
+"didax::Page::StartTest.dart::_StartTestState" o-- "didax::models::user.dart::User"
+"didax::Page::StartTest.dart::_StartTestState" o-- "didax::services::firebase.dart::Firebase"
+"didax::Page::StartTest.dart::_StartTestState" o-- "didax::services::QuestionData.dart::QuestionData"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::StartTest.dart::_StartTestState"
+
+class "didax::Page::Createquestions.dart::Createquestions" {
+  +UserEntrepreneur value
+  +_CreatequestionsState createState()
+}
+
+"didax::Page::Createquestions.dart::Createquestions" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::Createquestions.dart::Createquestions"
+
+class "didax::Page::Createquestions.dart::_CreatequestionsState" {
+  -UserEntrepreneur _value
+  +bool goodvalide
+  -bool _continue
+  +String question
+  +String good
+  +String bad
+  +String bad1
+  +String bad2
+  +String category
+  +String ref
+  +String nombreQuestion
+  {static} +DateTime now
+  {static} +DateTime berlinWallFell
+  +String timing
+  +bool controle
+  -TextEditingController _controllerQ
+  -TextEditingController _controllerG
+  -TextEditingController _controllerB
+  -TextEditingController _controllerB1
+  -TextEditingController _controllerB2
+  -FirebaseSociety _society
+  -QuestionData _questionData
+  -List<UserEntrepreneur> _UserE
+  -QuestionDataRef _questionDataRef
+  -QuestionList _questionListData
+  -UserEntrepreneur _usr
+  -bool _num
+  +int count
+  +Widget build()
+  +dynamic ifchecked()
+  +dynamic pushQuestion()
+  +dynamic takeUser()
+  +dynamic checkidUser()
+  +dynamic handUser()
+  +dynamic messageSend()
+}
+
+"didax::Page::Createquestions.dart::_CreatequestionsState" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"didax::Page::Createquestions.dart::_CreatequestionsState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"didax::Page::Createquestions.dart::_CreatequestionsState" o-- "didax::services::firebaseSociete.dart::FirebaseSociety"
+"didax::Page::Createquestions.dart::_CreatequestionsState" o-- "didax::services::QuestionData.dart::QuestionData"
+"didax::Page::Createquestions.dart::_CreatequestionsState" o-- "didax::services::QuestionData.dart::QuestionDataRef"
+"didax::Page::Createquestions.dart::_CreatequestionsState" o-- "didax::models::Questionnaire.dart::QuestionList"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::Createquestions.dart::_CreatequestionsState"
+
+class "didax::Page::CreateNotice.dart::CreateNotice" {
+  +UserEntrepreneur value
+  +_CreateNoticeState createState()
+}
+
+"didax::Page::CreateNotice.dart::CreateNotice" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::CreateNotice.dart::CreateNotice"
+
+class "didax::Page::CreateNotice.dart::_CreateNoticeState" {
+  -UserEntrepreneur _value
+  -FirebaseSociety _society
+  -List<UserEntrepreneur> _UserE
+  -UserEntrepreneur _usr
+  -QuestionDataRef _questionDataRef
+  -List _istcheckall
+  -NoticeStock _noticeStock
+  +String message
+  +String title
+  +String typeContrat
+  +String text
+  +String idSender
+  +String mail
+  +String nomCreateurQuestion
+  +String nombreQuestion
+  +String ref
+  +String category
+  -String _writeMessage
+  +bool goodvalide
+  +bool notvalid
+  +Widget build()
+  +dynamic checkidUser()
+  +dynamic takeUser()
+  +void createNoticeFinish()
+  +Widget buildRow()
+  +dynamic handUser()
+  +dynamic choiceTestQuestion()
+  +dynamic finishData()
+  +dynamic checkvalid()
+}
+
+"didax::Page::CreateNotice.dart::_CreateNoticeState" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"didax::Page::CreateNotice.dart::_CreateNoticeState" o-- "didax::services::firebaseSociete.dart::FirebaseSociety"
+"didax::Page::CreateNotice.dart::_CreateNoticeState" o-- "didax::services::QuestionData.dart::QuestionDataRef"
+"didax::Page::CreateNotice.dart::_CreateNoticeState" o-- "didax::services::NoticeStock.dart::NoticeStock"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::CreateNotice.dart::_CreateNoticeState"
+
+class "didax::Page::InscriptionPage.dart::InscriptionPageCandidats" {
+  +_InscriptionPageStateC createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::InscriptionPage.dart::InscriptionPageCandidats"
+
+class "didax::Page::InscriptionPage.dart::_InscriptionPageStateC" {
+  -Firebase _firebase
+  -List<User> _users
+  +bool problem
+  +String problemeWrite
+  -bool _checkID
+  +bool goodvalide
+  +String lastName
+  +String firstName
+  +String dayBorn
+  +String mouthBorn
+  +String yearBorn
+  +String city
+  +String mail
+  +String idConnection
+  +String passWordConnection
+  +String certifpassConnection
+  +String siretvalue
+  +String expvalue
+  +String dayBornActivity
+  +String mouthBornActivity
+  +String yearBornActivity
+  +String mailActivity
+  +void initState()
+  +Widget build()
+  +void finalityInscription()
+  +int allValueVidecheked()
+  +void validAll()
+  +void validInscription()
+  +void handValue()
+  +dynamic handleError()
+  +Future checkidUser()
+  +void handValueID()
+  +dynamic handleErrorID()
+  +bool checkConfirmation()
+  +bool checkFormatday()
+  +bool checkVide()
+  +bool checkFormatmouth()
+  +bool checkFormatyear()
+  +bool checkFormatyearA()
+  +bool checkmail()
+}
+
+"didax::Page::InscriptionPage.dart::_InscriptionPageStateC" o-- "didax::services::firebase.dart::Firebase"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::InscriptionPage.dart::_InscriptionPageStateC"
+
+class "didax::Page::InscriptionPage.dart::InscriptionPageEntrepreneur" {
+  +_InscriptionPageEntrepreneurState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::InscriptionPage.dart::InscriptionPageEntrepreneur"
+
+class "didax::Page::InscriptionPage.dart::_InscriptionPageEntrepreneurState" {
+  -FirebaseSociety _firebaseSociety
+  -List<UserEntrepreneur> _users
+  +String nomSociete
+  +String siret
+  +String matricule
+  +String mail
+  +String city
+  +String secteurActiviter
+  +String passWord
+  +String passWordConfirm
+  +bool goodvalide
+  +String problemeWrite
+  +bool problem
+  -bool _checkID
+  +Widget build()
+  +void finalityInscription()
+  +int allValueVidecheked()
+  +bool checkVide()
+  +void validInscription()
+  +bool checkConfirmation()
+  +bool checkmail()
+  +Future checkidUser()
+  +void handValue()
+  +dynamic handleError()
+  +void handValueID()
+  +dynamic handleErrorID()
+  +void validAll()
+}
+
+"didax::Page::InscriptionPage.dart::_InscriptionPageEntrepreneurState" o-- "didax::services::firebaseSociete.dart::FirebaseSociety"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::InscriptionPage.dart::_InscriptionPageEntrepreneurState"
+
+class "didax::Page::InscriptionPage.dart::InscriptionPageHunter" {
+  +_InscriptionPageStateH createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::InscriptionPage.dart::InscriptionPageHunter"
+
+class "didax::Page::InscriptionPage.dart::_InscriptionPageStateH" {
+  -Firebase _firebase
+  -List<User> _users
+  +bool problem
+  +String problemeWrite
+  -bool _checkID
+  +bool goodvalide
+  +String lastName
+  +String firstName
+  +String dayBorn
+  +String mouthBorn
+  +String yearBorn
+  +String city
+  +String mail
+  +String idConnection
+  +String passWordConnection
+  +String certifpassConnection
+  +String siretvalue
+  +String expvalue
+  +String dayBornActivity
+  +String mouthBornActivity
+  +String yearBornActivity
+  +String mailActivity
+  -bool _checkSiret
+  +void initState()
+  +Widget build()
+  +void finalityInscription()
+  +int allValueVidecheked()
+  +void validAll()
+  +void validInscription()
+  +void handValue()
+  +dynamic handleError()
+  +Future checkidUser()
+  +void handValueID()
+  +dynamic handleErrorID()
+  +Future checkidUserSiret()
+  +void handValueSiret()
+  +dynamic handleErrorSiret()
+  +bool checkConfirmation()
+  +bool checkFormatday()
+  +bool checkVide()
+  +bool checkFormatmouth()
+  +bool checkFormatyear()
+  +bool checkFormatyearA()
+  +bool checkmail()
+}
+
+"didax::Page::InscriptionPage.dart::_InscriptionPageStateH" o-- "didax::services::firebase.dart::Firebase"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::InscriptionPage.dart::_InscriptionPageStateH"
+
+class "didax::Page::testData.dart::TestData" {
+  +_TestDataState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::testData.dart::TestData"
+
+class "didax::Page::testData.dart::_TestDataState" {
+  +QuestionList q
+  -QuestionDataRef _questionDataRef
+  +Question qs
+  -QuestionData _questionData
+  +Widget build()
+  +void data()
+}
+
+"didax::Page::testData.dart::_TestDataState" o-- "didax::models::Questionnaire.dart::QuestionList"
+"didax::Page::testData.dart::_TestDataState" o-- "didax::services::QuestionData.dart::QuestionDataRef"
+"didax::Page::testData.dart::_TestDataState" o-- "didax::models::Questionnaire.dart::Question"
+"didax::Page::testData.dart::_TestDataState" o-- "didax::services::QuestionData.dart::QuestionData"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::testData.dart::_TestDataState"
+
+class "didax::Page::HomeConnect.dart::HomeConnect" {
+  +_HomeConnectState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::Page::HomeConnect.dart::HomeConnect"
+
+class "didax::Page::HomeConnect.dart::_HomeConnectState" {
+  -Firebase _firebase
+  -List<User> _users
+  -List<User> _usersEntrepreneur
+  +String identifiant
+  +String password
+  -User _myUser
+  +Widget build()
+  +void handValue()
+  +dynamic handleError()
+  +void handValuelist()
+  +Future checkidUser()
+  +void takeUser()
+}
+
+"didax::Page::HomeConnect.dart::_HomeConnectState" o-- "didax::services::firebase.dart::Firebase"
+"didax::Page::HomeConnect.dart::_HomeConnectState" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::Page::HomeConnect.dart::_HomeConnectState"
+
+class "didax::models::Message.dart::Message" {
+  +String to
+  +String from
+  +String toForFrom
+  +String fromForTo
+  +String message
+  +bool read
+  +dynamic toMap()
+}
+
+class "didax::models::Questionnaire.dart::QuestionList" {
+  +String nomCreateur
+  +String nombreQuestion
+  +String ref
+  +String category
+  +dynamic toMap()
+}
+
+class "didax::models::Questionnaire.dart::Question" {
+  +String question
+  +String good
+  +String bad
+  +String bad1
+  +String bad2
+  +String category
+  +String ref
+  +dynamic toMap()
+}
+
+class "didax::models::userEntrepreneur.dart::UserEntrepreneur" {
+  +String nomSociete
+  +String siret
+  +String matricule
+  +String mail
+  +String city
+  +String secteurActiviter
+  +String passWord
+  +String passWordConfirm
+  +dynamic toMap()
+}
+
+class "didax::models::user.dart::User" {
+  +String id
+  +String passWord
+  +String confirmPW
+  +String lastName
+  +String firstName
+  +String city
+  +String mail
+  +String siretvalue
+  +String mailActivity
+  +int dayBorn
+  +int mouthBorn
+  +int yearBorn
+  +int expvalue
+  +int dayBornActivity
+  +int mouthBornActivity
+  +int yearBornActivity
+  +dynamic toMap()
+}
+
+class "didax::models::Notice.dart::Notice" {
+  +String title
+  +String typeContrat
+  +String idSender
+  +String mail
+  +String text
+  +String nomCreateurQuestion
+  +String nombreQuestion
+  +String ref
+  +String category
+  +dynamic toMap()
+}
+
+class "didax::main.dart::MyApp" {
+  +User user
+  +Notice notice
+  +Widget build()
+}
+
+"didax::main.dart::MyApp" o-- "didax::models::user.dart::User"
+"didax::main.dart::MyApp" o-- "didax::models::Notice.dart::Notice"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "didax::main.dart::MyApp"
+
+class "didax::main.dart::MyHomePage" {
+  +_MyHomePageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "didax::main.dart::MyHomePage"
+
+class "didax::main.dart::_MyHomePageState" {
+  -Firebase _firebase
+  -List<User> _users
+  -FirebaseSociety _firebaseSociety
+  -List<UserEntrepreneur> _usersE
+  -UserEntrepreneur _usrE
+  -User _usr
+  +bool Candidat
+  +bool Entrepreneur
+  +String writeId
+  +String writePass
+  +String id
+  +String pass
+  +Widget build()
+  +dynamic checkId()
+  +dynamic checkidUser()
+  +dynamic checkidUserE()
+  +dynamic handUser()
+  +dynamic handUserSociety()
+  +void inscriptionPageRouteHunter()
+  +void inscriptionPageRouteEntrepreneur()
+  +void inscriptionPageRouteCandidat()
+}
+
+"didax::main.dart::_MyHomePageState" o-- "didax::services::firebase.dart::Firebase"
+"didax::main.dart::_MyHomePageState" o-- "didax::services::firebaseSociete.dart::FirebaseSociety"
+"didax::main.dart::_MyHomePageState" o-- "didax::models::userEntrepreneur.dart::UserEntrepreneur"
+"didax::main.dart::_MyHomePageState" o-- "didax::models::user.dart::User"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "didax::main.dart::_MyHomePageState"
+
+class "didax::services::firebase.dart::Firebase" {
+  +FirebaseAuth authInstance
+  {static} +Firestore dbInstance
+  {static} +StorageReference storageInstance
+  +CollectionReference dbUsers
+  +Future getAllUsers()
+  +Future getUser()
+  +Future addUser()
+  +Future deleteUser()
+}
+
+"didax::services::firebase.dart::Firebase" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"didax::services::firebase.dart::Firebase" o-- "cloud_firestore::cloud_firestore.dart::Firestore"
+"didax::services::firebase.dart::Firebase" o-- "firebase_storage::firebase_storage.dart::StorageReference"
+"didax::services::firebase.dart::Firebase" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference"
+
+class "didax::services::NoticeStock.dart::NoticeStock" {
+  +FirebaseAuth authInstance
+  {static} +Firestore dbInstance
+  {static} +StorageReference storageInstance
+  +CollectionReference dbUsers
+  +Future getAllNotice()
+  +Future addNotice()
+}
+
+"didax::services::NoticeStock.dart::NoticeStock" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"didax::services::NoticeStock.dart::NoticeStock" o-- "cloud_firestore::cloud_firestore.dart::Firestore"
+"didax::services::NoticeStock.dart::NoticeStock" o-- "firebase_storage::firebase_storage.dart::StorageReference"
+"didax::services::NoticeStock.dart::NoticeStock" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference"
+
+class "didax::services::firebaseSociete.dart::FirebaseSociety" {
+  +FirebaseAuth authInstance
+  {static} +Firestore dbInstance
+  {static} +StorageReference storageInstance
+  +CollectionReference dbUsers
+  +Future getAllUsers()
+  +Future getUser()
+  +Future addUser()
+  +Future deleteUser()
+}
+
+"didax::services::firebaseSociete.dart::FirebaseSociety" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"didax::services::firebaseSociete.dart::FirebaseSociety" o-- "cloud_firestore::cloud_firestore.dart::Firestore"
+"didax::services::firebaseSociete.dart::FirebaseSociety" o-- "firebase_storage::firebase_storage.dart::StorageReference"
+"didax::services::firebaseSociete.dart::FirebaseSociety" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference"
+
+class "didax::services::QuestionData.dart::QuestionData" {
+  +FirebaseAuth authInstance
+  {static} +Firestore dbInstance
+  {static} +StorageReference storageInstance
+  +CollectionReference dbUsers
+  +Future getAllUsers()
+  +Future getUser()
+  +Future addUser()
+  +Future deleteUser()
+}
+
+"didax::services::QuestionData.dart::QuestionData" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"didax::services::QuestionData.dart::QuestionData" o-- "cloud_firestore::cloud_firestore.dart::Firestore"
+"didax::services::QuestionData.dart::QuestionData" o-- "firebase_storage::firebase_storage.dart::StorageReference"
+"didax::services::QuestionData.dart::QuestionData" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference"
+
+class "didax::services::QuestionData.dart::QuestionDataRef" {
+  +FirebaseAuth authInstance
+  {static} +Firestore dbInstance
+  {static} +StorageReference storageInstance
+  +CollectionReference dbUsers
+  +Future getAllUsers()
+  +Future getUser()
+  +Future addUser()
+  +Future deleteUser()
+}
+
+"didax::services::QuestionData.dart::QuestionDataRef" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"didax::services::QuestionData.dart::QuestionDataRef" o-- "cloud_firestore::cloud_firestore.dart::Firestore"
+"didax::services::QuestionData.dart::QuestionDataRef" o-- "firebase_storage::firebase_storage.dart::StorageReference"
+"didax::services::QuestionData.dart::QuestionDataRef" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference"
+
+class "didax::services::MessageBase.dart::Messagebase" {
+  +FirebaseAuth authInstance
+  {static} +Firestore dbInstance
+  {static} +StorageReference storageInstance
+  +CollectionReference dbUsers
+  +Future getAllUsers()
+  +Future getUser()
+  +Future addUser()
+  +Future deleteUser()
+}
+
+"didax::services::MessageBase.dart::Messagebase" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"didax::services::MessageBase.dart::Messagebase" o-- "cloud_firestore::cloud_firestore.dart::Firestore"
+"didax::services::MessageBase.dart::Messagebase" o-- "firebase_storage::firebase_storage.dart::StorageReference"
+"didax::services::MessageBase.dart::Messagebase" o-- "cloud_firestore::cloud_firestore.dart::CollectionReference"
+
+
+@enduml

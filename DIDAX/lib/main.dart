@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: //ReadNotice(value:notice)
       MyHomePage()
-        //new Createquestions(value : new UserEntrepreneur())
+        //new Createquestions(entrepreneur : new UserEntrepreneur())
         //StartTest(refData:new QuestionList(),userTested:new User())
         //new Home(user:new User(),userE:new UserEntrepreneur())
         //new InscriptionPageEntrepreneur()
@@ -384,6 +384,7 @@ class _MyHomePageState extends State<MyHomePage>{
     
 
     handUser(List<User> value) {_users=value;}
+
     handUserSociety(List<UserEntrepreneur> value) {_usersE=value;}
 
     void inscriptionPageRouteHunter(){
